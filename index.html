@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ハラールマップ｜現在地から近いハラール対応店を探す</title>
+<meta name="description" content="現在地から近い順に、ハラール認証店・ムスリムフレンドリー店を探せます。認証の区分をはっきり分けて表示します。地図・経路はGoogleマップで開きます。">
+<!-- フィードバック用の試作段階。検索結果に出さない。
+     実運用を始めるときにこの1行を消す。 -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0d4d3f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%8C%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f7f5ef; --bg-soft:#fffdf8; --card:#ffffff;
+  --ink:#1d2320; --ink-2:#4d5a54; --ink-3:#77857e;
+  --line:#e3ded1; --line-2:#efeae0;
+  --brand:#0d4d3f; --brand-2:#126955; --brand-ink:#e8f5ef;
+  --gold:#a8802c; --gold-soft:#f6edd9;
+  --ok:#166a4b; --ok-bg:#e4f3ec;
+  --warn:#8a5a12; --warn-bg:#fbf0da;
+  --info:#2a5580; --info-bg:#e7eff8;
+  --danger:#8f3232;
+  --shadow:0 1px 2px rgba(20,35,30,.05), 0 8px 24px -12px rgba(20,35,30,.18);
+  --radius:16px;
+  --max:960px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#121614; --bg-soft:#171d1a; --card:#1b2320;
+    --ink:#e9efeb; --ink-2:#adbcb5; --ink-3:#7f8f88;
+    --line:#2b3733; --line-2:#232d29;
+    --brand:#5fcfae; --brand-2:#7fdcc0; --brand-ink:#08201a;
+    --gold:#d9b263; --gold-soft:#2c2513;
+    --ok:#7fd9b3; --ok-bg:#122c23;
+    --warn:#e3b872; --warn-bg:#2e2413;
+    --info:#8fb8e6; --info-bg:#16232f;
+    --danger:#e79a9a;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;
+  line-height:1.7; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+a{color:var(--brand-2)}
+
+/* ---------- header ---------- */
+.hero{
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(1200px 380px at 12% -10%, rgba(168,128,44,.22), transparent 60%),
+    linear-gradient(158deg, var(--brand) 0%, #0a3c31 58%, #072a23 100%);
+  color:#eefaf5; padding:26px 0 22px;
+}
+.hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.14;
+  background-image:
+    radial-gradient(circle at 50% 0, #fff 1.2px, transparent 1.3px),
+    radial-gradient(circle at 0 50%, #fff 1.2px, transparent 1.3px);
+  background-size:26px 26px; background-position:0 0,13px 13px;
+}
+.hero .wrap{position:relative;z-index:1}
+.brandline{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em}
+.brandmark{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(150deg,var(--gold),#7d5c1a); color:#fff; font-size:17px;
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
+}
+h1{font-size:1.42rem;margin:.5rem 0 .2rem;letter-spacing:.01em;line-height:1.4}
+.lede{margin:0;color:#bfe0d4;font-size:.92rem}
+
+/* ---------- locate ---------- */
+.locate{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{
+  appearance:none;border:0;cursor:pointer;font:inherit;font-weight:700;
+  border-radius:999px;padding:12px 20px;display:inline-flex;align-items:center;gap:9px;
+  transition:transform .12s ease, box-shadow .12s ease, opacity .12s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(160deg,#ffd98a,var(--gold));color:#2a1e05;box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#eefaf5;border:1px solid rgba(255,255,255,.28)}
+.btn[disabled]{opacity:.55;cursor:progress}
+.locate-note{font-size:.8rem;color:#a8ccbe;flex-basis:100%;margin-top:2px}
+.locate-note strong{color:#ffdf9e}
+
+/* ---------- 認証区分の説明（最重要） ---------- */
+.legend{
+  margin:18px 0 0; background:var(--card); border:1px solid var(--line);
+  border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
+}
+.legend-head{
+  display:flex;align-items:center;gap:9px;padding:13px 16px;
+  border-bottom:1px solid var(--line-2); background:var(--bg-soft);
+  font-weight:800;font-size:.95rem;
+}
+.legend-head .dot{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.legend-body{padding:6px 16px 14px}
+.legend-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line-2);align-items:flex-start}
+.legend-item:last-child{border-bottom:0}
+.legend-item .badge{align-self:flex-start;margin-top:2px;min-width:84px;justify-content:center}
+.legend-item p{margin:2px 0 0;font-size:.86rem;color:var(--ink-2)}
+.legend-final{
+  margin:10px 0 0;padding:11px 13px;border-radius:12px;
+  background:var(--warn-bg);color:var(--warn);font-size:.87rem;font-weight:700;
+  display:flex;gap:9px;align-items:flex-start;
+}
+.legend-final span{font-weight:400;color:var(--ink-2)}
+@media (prefers-color-scheme:dark){.legend-final span{color:var(--ink-2)}}
+
+/* ---------- badges ---------- */
+.badge{
+  display:inline-flex;align-items:center;gap:5px;flex:none;
+  font-size:.74rem;font-weight:800;letter-spacing:.02em;
+  padding:4px 10px;border-radius:999px;border:1px solid transparent;white-space:nowrap;
+}
+.badge-certified{background:var(--ok-bg);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 30%,transparent)}
+.badge-self{background:var(--info-bg);color:var(--info);border-color:color-mix(in srgb,var(--info) 30%,transparent)}
+.badge-friendly{background:var(--warn-bg);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
+
+/* ---------- controls ---------- */
+.controls{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
+.ctl-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctl-row + .ctl-row{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line-2)}
+.ctl-label{font-size:.76rem;font-weight:800;color:var(--ink-3);letter-spacing:.06em;width:100%;}
+@media(min-width:560px){.ctl-label{width:74px;flex:none}}
+.chip{
+  appearance:none;font:inherit;cursor:pointer;
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--ink-2);
+  padding:7px 14px;border-radius:999px;font-size:.83rem;font-weight:700;
+  transition:all .12s ease;
+}
+.chip:hover{border-color:var(--brand-2);color:var(--brand-2)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+@media (prefers-color-scheme:dark){.chip[aria-pressed="true"]{color:#08201a}}
+.search{
+  flex:1;min-width:180px;font:inherit;padding:9px 14px;border-radius:999px;
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--ink);
+}
+.search:focus{outline:2px solid var(--brand-2);outline-offset:1px}
+
+/* ---------- status ---------- */
+.status{margin:16px 0 0;font-size:.87rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.status b{color:var(--ink)}
+.pill{background:var(--gold-soft);color:var(--gold);border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:800}
+
+/* ---------- cards ---------- */
+.list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+@media(min-width:720px){.list{grid-template-columns:1fr 1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:15px 16px;display:flex;flex-direction:column;gap:9px;
+  position:relative;overflow:hidden;
+}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ok)}
+.card.is-self::before{background:var(--info)}
+.card.is-friendly::before{background:var(--warn)}
+.card-top{display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap}
+.card h3{margin:0;font-size:1.03rem;line-height:1.45;flex:1;min-width:0;word-break:break-word}
+.rank{
+  flex:none;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;
+  background:var(--bg-soft);border:1px solid var(--line);color:var(--ink-3);
+  font-size:.74rem;font-weight:800;
+}
+.meta{margin:0;font-size:.85rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 10px}
+.meta .genre{color:var(--brand-2);font-weight:700}
+.dist{
+  display:inline-flex;align-items:center;gap:5px;font-weight:800;color:var(--ink);
+  background:var(--gold-soft);border-radius:8px;padding:2px 9px;font-size:.83rem;
+}
+.dist.approx{background:var(--warn-bg);color:var(--warn)}
+.addr{margin:0;font-size:.84rem;color:var(--ink-2);word-break:break-word}
+.src{margin:0;font-size:.75rem;color:var(--ink-3)}
+.src a{color:var(--ink-3)}
+.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.act{
+  appearance:none;font:inherit;cursor:pointer;text-decoration:none;
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--ink-2);
+  padding:8px 13px;border-radius:10px;font-size:.83rem;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;transition:all .12s;
+}
+.act:hover{border-color:var(--brand-2);color:var(--brand-2)}
+.act-main{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+@media (prefers-color-scheme:dark){.act-main{color:#08201a}}
+.act-main:hover{color:var(--brand-ink);opacity:.9}
+@media (prefers-color-scheme:dark){.act-main:hover{color:#08201a}}
+.note-approx{
+  margin:0;font-size:.76rem;color:var(--warn);background:var(--warn-bg);
+  padding:6px 10px;border-radius:9px;
+}
+
+.empty{margin:24px 0;padding:26px 18px;text-align:center;color:var(--ink-2);background:var(--card);border:1px dashed var(--line);border-radius:var(--radius)}
+
+/* ---------- footer ---------- */
+footer{margin:34px 0 0;background:var(--bg-soft);border-top:1px solid var(--line);padding:22px 0 34px;font-size:.83rem;color:var(--ink-2)}
+footer h2{font-size:.92rem;margin:0 0 6px}
+footer p{margin:.4rem 0}
+footer ul{margin:.4rem 0;padding-left:1.2em}
+.disclaimer{background:var(--warn-bg);border-radius:12px;padding:12px 14px;color:var(--ink-2);margin-top:12px}
+.disclaimer b{color:var(--warn)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brandline"><span class="brandmark">🕌</span><span>ハラールマップ</span></div>
+    <h1>現在地から近い、ハラール対応のお店を探す</h1>
+    <p class="lede">認証の区分をはっきり分けて表示します。地図と経路はGoogleマップで開きます。</p>
+
+    <div class="locate">
+      <button class="btn btn-primary" id="btnLocate">📍 現在地から探す</button>
+      <button class="btn btn-ghost" id="btnClearLoc" hidden>現在地を解除</button>
+      <p class="locate-note" id="locNote">位置情報はこの端末の中だけで使います。<strong>どこにも送信しません。</strong></p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 認証区分の説明。一覧より先に置く。 -->
+  <section class="legend" aria-labelledby="legendTitle">
+    <div class="legend-head"><span class="dot"></span><span id="legendTitle">表示している「区分」の意味</span></div>
+    <div class="legend-body">
+      <div class="legend-item">
+        <span class="badge badge-certified">認証済み</span>
+        <p>ハラール認証団体の審査を受け、認証を取得していると<b>その団体が公表している</b>お店です。団体名と出典を各カードに記載しています。</p>
+      </div>
+      <div class="legend-item">
+        <span class="badge badge-self">自己申告</span>
+        <p>お店自身が「ハラール対応」と申告した情報です。<b>第三者の審査は受けていません。</b></p>
+      </div>
+      <div class="legend-item">
+        <span class="badge badge-friendly">一部対応</span>
+        <p>ムスリムフレンドリー。豚肉不使用メニューがある、酒類を提供している等、<b>一部のみの対応</b>です。</p>
+      </div>
+      <p class="legend-final">⚠️<span><b>最終確認は必ずお店にお願いします。</b>
+        原材料・調理器具・仕入れ先は予告なく変わります。認証の有効期限が切れている場合もあります。
+        このサイトの掲載内容は、あなたが食べられるかどうかを保証するものではありません。</span></p>
+    </div>
+  </section>
+
+  <!-- 絞り込み -->
+  <section class="controls" aria-label="絞り込み">
+    <div class="ctl-row">
+      <span class="ctl-label">区分</span>
+      <button class="chip" data-cert="certified" aria-pressed="true">認証済み</button>
+      <button class="chip" data-cert="self" aria-pressed="true">自己申告</button>
+      <button class="chip" data-cert="friendly" aria-pressed="true">一部対応</button>
+    </div>
+    <div class="ctl-row" id="genreRow">
+      <span class="ctl-label">ジャンル</span>
+    </div>
+    <div class="ctl-row" id="distRow">
+      <span class="ctl-label">距離</span>
+      <button class="chip" data-dist="1" aria-pressed="false">1km</button>
+      <button class="chip" data-dist="3" aria-pressed="false">3km</button>
+      <button class="chip" data-dist="10" aria-pressed="false">10km</button>
+      <button class="chip" data-dist="0" aria-pressed="true">指定なし</button>
+    </div>
+    <div class="ctl-row">
+      <span class="ctl-label">キーワード</span>
+      <input class="search" id="q" type="search" placeholder="店名・地名・ジャンルで絞り込む" autocomplete="off">
+    </div>
+  </section>
+
+  <p class="status" id="status" role="status"></p>
+
+  <ul class="list" id="list"></ul>
+  <div class="empty" id="empty" hidden></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>データについて</h2>
+    <p id="srcNote"></p>
+    <ul>
+      <li>掲載しているのは店名・住所・電話番号・ジャンル・営業時間などの<b>事実情報のみ</b>で、各件に出典リンクを付けています。</li>
+      <li>緯度経度は国土地理院の住所検索APIで住所から求めた<b>おおよその位置</b>です。建物単位で特定できなかった店は「位置はおおよそ」と明記しています。</li>
+      <li>掲載の追加・修正・削除のご依頼はお店・団体からお受けします。→ <a href="register.html">掲載のご依頼（お店の方へ）</a></li>
+    </ul>
+    <div class="disclaimer">
+      <p><b>この版について</b>：現在は試作段階で、意見をいただくために限定的に公開しています。
+      掲載件数はまだ少なく、内容の確認も途中です。実際のお店選びの判断にはお使いにならないでください。</p>
+      <p><b>免責</b>：本サイトはハラール性を保証・証明するものではありません。認証の有無・内容は各認証団体および各店舗にご確認ください。
+      掲載情報の誤り・更新遅れによって生じた損害について、運営者は責任を負いかねます。</p>
+    </div>
+    <p style="margin-top:12px;color:var(--ink-3)">位置情報はブラウザ内でのみ利用し、サーバーへ送信・保存していません。</p>
+  </div>
+</footer>
+
+<script src="data/stores.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var DATA = (window.HALAL_DATA && window.HALAL_DATA.stores) ? window.HALAL_DATA : {stores:[],sources:[],generated_at:''};
+  var STORES = DATA.stores || [];
+
+  var CERT_LABEL = {certified:"認証済み", self:"自己申告", friendly:"一部対応"};
+  var CERT_CLASS = {certified:"badge-certified", self:"badge-self", friendly:"badge-friendly"};
+  var CARD_CLASS = {certified:"", self:"is-self", friendly:"is-friendly"};
+
+  var state = {
+    cert:{certified:true, self:true, friendly:true},
+    genre:"",           // "" = すべて
+    maxKm:0,            // 0 = 指定なし
+    q:"",
+    here:null           // {lat,lng}
+  };
+
+  var $ = function(s){ return document.querySelector(s); };
+  var listEl = $("#list"), emptyEl = $("#empty"), statusEl = $("#status");
+
+  /* ---------- ジャンルの正規化 ---------- */
+  // 出典のジャンル欄は「焼肉、マレーシア料理」のように自由記述なので、
+  // 代表的な語で大まかに寄せる。判定できないものは「その他」にせず元の語を残す。
+  var GENRE_RULES = [
+    ["ラーメン",   /ラーメン|らーめん|ら-めん|鶏そば|麺/],
+    ["焼肉・肉料理",/焼肉|焼き肉|ヤキニク|和牛|肉料理|ステーキ/],
+    ["インド・南アジア料理", /インド|ネパール|バングラデシュ|南アジア|カレー/],
+    ["和食",      /和食|日本料理|寿司|すし|天丼|天ぷら|丼|ふぐ|弁当|お弁当/],
+    ["中東・トルコ料理", /トルコ|ケバブ|中東|アラブ/],
+    ["東南アジア料理", /マレーシア|インドネシア|タイ|ベトナム|東南アジア/],
+    ["バーガー・軽食", /バーガー|ハンバーガー|ファーストフード|チキン|カフェ|Café|cafe/i],
+    ["イタリアン・洋食", /イタリアン|パスタ|ピザ|洋食|ビストロ/]
+  ];
+  function normGenre(raw){
+    var s = String(raw||"");
+    for (var i=0;i<GENRE_RULES.length;i++){ if (GENRE_RULES[i][1].test(s)) return GENRE_RULES[i][0]; }
+    return s.split(/[、,／\/]/)[0].trim() || "その他";
+  }
+  STORES.forEach(function(s){ s._genre = normGenre(s.genre); });
+
+  /* ---------- 距離 ---------- */
+  function haversine(a, b){
+    var R = 6371, rad = Math.PI/180;
+    var dLat = (b.lat-a.lat)*rad, dLng = (b.lng-a.lng)*rad;
+    var la1 = a.lat*rad, la2 = b.lat*rad;
+    var h = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.sin(dLng/2)*Math.sin(dLng/2)*Math.cos(la1)*Math.cos(la2);
+    return 2*R*Math.asin(Math.sqrt(h));
+  }
+  function fmtDist(km){
+    if (km < 1) return Math.round(km*1000) + "m";
+    return (km < 10 ? km.toFixed(1) : Math.round(km)) + "km";
+  }
+  // 徒歩は分速80mで概算
+  function fmtWalk(km){
+    var min = Math.round(km*1000/80);
+    if (min <= 60) return "徒歩約" + min + "分";
+    return "";
+  }
+  // 建物まで特定できていない店は距離を断定しない
+  function isPrecise(s){ return s.geo_ok && (s.geo_precision === "building" || s.geo_precision === "block"); }
+
+  /* ---------- Googleマップのリンク ---------- */
+  // api=1 の公式Universal Link。アプリが入っていればアプリ、無ければブラウザで開く。
+  // 端末判定やアプリ専用スキーム(comgooglemaps://)は使わない。未インストール時にエラーになるため。
+  // 検索語に使う店名。省略記号や括弧書きの補足は検索の邪魔になるので落とす。
+  function mapName(s){
+    return String(s.name||"")
+      .replace(/…$/, "")
+      .replace(/[【（(\[].*$/, "")
+      .replace(/\s*[*＊]\s*.*$/, "")
+      .trim();
+  }
+  function mapSearchUrl(s){
+    var q = isPrecise(s) ? (mapName(s) + " " + s.address) : s.address;
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q.trim());
+  }
+  function mapDirUrl(s){
+    var dest = isPrecise(s) && s.lat != null ? (s.lat + "," + s.lng) : s.address;
+    var u = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(dest);
+    return u + "&travelmode=walking";
+  }
+
+  /* ---------- 現在地 ---------- */
+  var btnLocate = $("#btnLocate"), btnClear = $("#btnClearLoc"), locNote = $("#locNote");
+  btnLocate.addEventListener("click", function(){
+    if (!navigator.geolocation){
+      locNote.innerHTML = "この端末では位置情報を取得できません。キーワードで探してください。";
+      return;
+    }
+    btnLocate.disabled = true; btnLocate.textContent = "📍 取得中…";
+    navigator.geolocation.getCurrentPosition(function(pos){
+      state.here = {lat:pos.coords.latitude, lng:pos.coords.longitude};
+      btnLocate.disabled = false; btnLocate.textContent = "📍 現在地を更新";
+      btnClear.hidden = false;
+      locNote.innerHTML = "現在地を取得しました。近い順に並べています。<strong>位置情報は送信していません。</strong>";
+      render();
+    }, function(err){
+      btnLocate.disabled = false; btnLocate.textContent = "📍 現在地から探す";
+      var msg = err.code === 1
+        ? "位置情報の利用が許可されませんでした。ブラウザの設定から許可するか、キーワードで探してください。"
+        : "位置情報を取得できませんでした（" + (err.message||"") + "）。キーワードで探してください。";
+      locNote.textContent = msg;
+    }, {enableHighAccuracy:true, timeout:10000, maximumAge:60000});
+  });
+  btnClear.addEventListener("click", function(){
+    state.here = null; btnClear.hidden = true;
+    btnLocate.textContent = "📍 現在地から探す";
+    locNote.innerHTML = "位置情報はこの端末の中だけで使います。<strong>どこにも送信しません。</strong>";
+    render();
+  });
+
+  /* ---------- 絞り込みUI ---------- */
+  document.querySelectorAll("[data-cert]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.dataset.cert, on = b.getAttribute("aria-pressed") === "true";
+      b.setAttribute("aria-pressed", String(!on)); state.cert[k] = !on; render();
+    });
+  });
+
+  // ジャンルのチップは実データから作る
+  (function buildGenres(){
+    var row = $("#genreRow");
+    var counts = {};
+    STORES.forEach(function(s){ counts[s._genre] = (counts[s._genre]||0)+1; });
+    var names = Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; });
+    var all = document.createElement("button");
+    all.className = "chip"; all.dataset.genre = ""; all.setAttribute("aria-pressed","true");
+    all.textContent = "すべて";
+    row.appendChild(all);
+    names.forEach(function(n){
+      var b = document.createElement("button");
+      b.className = "chip"; b.dataset.genre = n; b.setAttribute("aria-pressed","false");
+      b.textContent = n + " (" + counts[n] + ")";
+      row.appendChild(b);
+    });
+    row.addEventListener("click", function(e){
+      var b = e.target.closest("[data-genre]"); if(!b) return;
+      state.genre = b.dataset.genre;
+      row.querySelectorAll("[data-genre]").forEach(function(x){
+        x.setAttribute("aria-pressed", String(x === b));
+      });
+      render();
+    });
+  })();
+
+  $("#distRow").addEventListener("click", function(e){
+    var b = e.target.closest("[data-dist]"); if(!b) return;
+    state.maxKm = Number(b.dataset.dist);
+    this.querySelectorAll("[data-dist]").forEach(function(x){
+      x.setAttribute("aria-pressed", String(x === b));
+    });
+    render();
+  });
+
+  var qEl = $("#q"), qTimer;
+  qEl.addEventListener("input", function(){
+    clearTimeout(qTimer);
+    qTimer = setTimeout(function(){ state.q = qEl.value.trim(); render(); }, 160);
+  });
+
+  /* ---------- 描画 ---------- */
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function matches(s){
+    if (!state.cert[s.cert_status]) return false;
+    if (state.genre && s._genre !== state.genre) return false;
+    if (state.q){
+      var hay = [s.name, s.operator, s.genre, s.address, s.pref, s.city].join(" ").toLowerCase();
+      if (hay.indexOf(state.q.toLowerCase()) === -1) return false;
+    }
+    if (state.maxKm > 0){
+      if (!state.here) return true;           // 現在地が無いなら距離条件は無視
+      if (s._km == null) return false;
+      if (s._km > state.maxKm) return false;
+    }
+    return true;
+  }
+
+  function render(){
+    // 距離を計算
+    STORES.forEach(function(s){
+      s._km = (state.here && s.geo_ok && s.lat != null) ? haversine(state.here, {lat:s.lat, lng:s.lng}) : null;
+    });
+
+    var rows = STORES.filter(matches);
+    if (state.here){
+      rows.sort(function(a,b){
+        if (a._km == null) return 1;
+        if (b._km == null) return -1;
+        return a._km - b._km;
+      });
+    } else {
+      rows.sort(function(a,b){ return a.name.localeCompare(b.name, "ja"); });
+    }
+
+    // ステータス
+    var bits = ['<b>' + rows.length + '件</b>を表示'];
+    if (state.here) bits.push('<span class="pill">現在地から近い順</span>');
+    else bits.push('<span class="pill">50音順</span>');
+    if (state.maxKm > 0 && !state.here) bits.push('（距離で絞るには「現在地から探す」を押してください）');
+    statusEl.innerHTML = bits.join(" ");
+
+    listEl.innerHTML = "";
+    if (!rows.length){
+      emptyEl.hidden = false;
+      emptyEl.innerHTML = "条件に合うお店が見つかりませんでした。<br>区分やジャンルの絞り込みをゆるめてみてください。";
+      return;
+    }
+    emptyEl.hidden = true;
+
+    var frag = document.createDocumentFragment();
+    rows.forEach(function(s, i){
+      var li = document.createElement("li");
+      li.className = "card " + (CARD_CLASS[s.cert_status] || "");
+
+      var precise = isPrecise(s);
+      var distHtml = "";
+      if (s._km != null){
+        var walk = precise ? fmtWalk(s._km) : "";
+        distHtml = '<span class="dist' + (precise ? "" : " approx") + '">'
+          + (precise ? "" : "約") + esc(fmtDist(s._km))
+          + (walk ? " ・ " + esc(walk) : "") + '</span>';
+      }
+
+      var metaBits = [];
+      if (s._genre) metaBits.push('<span class="genre">' + esc(s._genre) + '</span>');
+      if (s.pref || s.city) metaBits.push(esc((s.pref||"") + (s.city||"")));
+      if (s.hours) metaBits.push(esc(s.hours.length > 34 ? s.hours.slice(0,34) + "…" : s.hours));
+
+      li.innerHTML =
+        '<div class="card-top">'
+          + '<span class="rank">' + (i+1) + '</span>'
+          + '<h3>' + esc(s.name) + '</h3>'
+          + '<span class="badge ' + CERT_CLASS[s.cert_status] + '">' + esc(CERT_LABEL[s.cert_status]) + '</span>'
+        + '</div>'
+        + (distHtml ? '<p class="meta">' + distHtml + '</p>' : '')
+        + (metaBits.length ? '<p class="meta">' + metaBits.join(" ") + '</p>' : '')
+        + '<p class="addr">' + esc(s.address) + (s.tel ? ' ・ ' + esc(s.tel) : '') + '</p>'
+        + (!precise ? '<p class="note-approx">位置はおおよそです（住所から建物を特定できませんでした）。地図は住所で開きます。</p>' : '')
+        + '<p class="src">'
+            + (s.cert_status === "certified" ? esc(s.cert_org) + 'の公表情報' : '登録情報')
+            + (s.source_url ? ' ・ <a href="' + esc(s.source_url) + '" target="_blank" rel="noopener noreferrer">出典</a>' : '')
+            + (s.name_truncated ? ' ・ 正式名称は出典をご確認ください' : '')
+          + '</p>'
+        + '<div class="actions">'
+          + '<a class="act act-main" href="' + esc(mapSearchUrl(s)) + '" target="_blank" rel="noopener noreferrer">🗺 地図で開く</a>'
+          + '<a class="act" href="' + esc(mapDirUrl(s)) + '" target="_blank" rel="noopener noreferrer">🧭 経路</a>'
+          + (s.tel ? '<a class="act" href="tel:' + esc(s.tel.replace(/[^0-9+]/g,"")) + '">📞 電話</a>' : '')
+          + (s.web ? '<a class="act" href="' + esc(s.web) + '" target="_blank" rel="noopener noreferrer">🔗 公式</a>' : '')
+        + '</div>';
+
+      frag.appendChild(li);
+    });
+    listEl.appendChild(frag);
+  }
+
+  /* ---------- 出典の注記 ---------- */
+  (function(){
+    var srcs = (DATA.sources||[]).map(function(s){
+      return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.org) + '</a>';
+    }).join("、");
+    var d = DATA.generated_at ? new Date(DATA.generated_at) : null;
+    var when = d ? (d.getFullYear() + "年" + (d.getMonth()+1) + "月" + d.getDate() + "日") : "";
+    $("#srcNote").innerHTML =
+      "現在の掲載は <b>" + (DATA.count||STORES.length) + "件</b>。出典：" + (srcs || "―")
+      + (when ? "（取得日 " + when + "）" : "")
+      + "。認証団体が公表している一覧をもとにしています。";
+  })();
+
+  render();
+})();
+</script>
+</body>
+</html>
