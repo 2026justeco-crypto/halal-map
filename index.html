@@ -106,6 +106,10 @@ h1{font-size:1.42rem;margin:.5rem 0 .2rem;letter-spacing:.01em;line-height:1.4}
 .legend[open] .legend-head{border-bottom:1px solid var(--line-2)}
 .legend[open] .legend-head .car{transform:rotate(180deg)}
 .legend-body{padding:6px 16px 14px}
+/* 出典側で名称が途中で切れている店に付ける印 */
+.cut{display:inline-block;margin-left:6px;vertical-align:middle;
+  font-size:.66rem;font-weight:700;padding:2px 6px;border-radius:6px;
+  background:var(--line-2);color:var(--ink-3);white-space:nowrap}
 .warnline{
   margin:14px 0 0;padding:11px 14px;border-radius:12px;display:flex;gap:9px;align-items:flex-start;
   background:var(--warn-bg);color:var(--ink-2);font-size:.87rem;
@@ -248,6 +252,28 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
   <!-- 常時見えるのは警告の1行だけ。区分の意味は畳んであり、カードのバッジからも開ける。 -->
   <p class="warnline">⚠️<span><b>最終確認は必ずお店にお願いします。</b>
     原材料・調理器具・仕入れ先は予告なく変わります。このサイトは、あなたが食べられるかどうかを保証しません。</span></p>
+
+  <details class="legend" id="dataNote">
+    <summary class="legend-head"><span class="dot" style="background:var(--info)"></span><span>この一覧のデータについて（正直にお伝えします）</span><span class="car" aria-hidden="true">⌄</span></summary>
+    <div class="legend-body">
+      <p style="margin:8px 0 0;font-size:.86rem;color:var(--ink-2)">
+        掲載は<b>認証団体が公表している認証実績</b>をもとにしています。認証は<b>店舗ではなく事業者に対して</b>出るため、
+        次の弱点があります。ご承知おきください。</p>
+      <ul style="margin:8px 0 0;padding-left:1.2em;font-size:.86rem;color:var(--ink-2)">
+        <li><b>店名が途中で切れている店があります</b>（出典側が約50文字で切っているため）。
+          「表記が途中」の印が付いた店は、<b>正式名称を出典でご確認ください</b>。
+          こちらで推測して補うと誤った名前になるため、あえて補っていません。</li>
+        <li><b>店名に事業者名が混ざっている場合があります</b>（「株式会社◯◯」など）。同じ理由です。</li>
+        <li><b>公式サイトへのリンクは出していません。</b>
+          出典に載っているURLは事業者のサイト（建設会社・コンサル会社など）であることが多く、
+          お店の情報ではないためです。実際に確認したところ<b>4件に1件はリンク切れ</b>でした。
+          代わりに「店名で調べる」を用意しています。</li>
+        <li>位置は住所から求めた<b>おおよその座標</b>です。建物まで特定できなかった店は「位置はおおよそ」と表示しています。</li>
+      </ul>
+      <p style="margin:10px 0 0;font-size:.86rem;color:var(--ink-2)">
+        <b>店の名前・場所・営業状況は、出典と「店名で調べる」で必ず確かめてください。</b></p>
+    </div>
+  </details>
 
   <details class="legend" id="legend">
     <summary class="legend-head"><span class="dot"></span><span id="legendTitle">「認証済み」「自己申告」「一部対応」の違い</span><span class="car" aria-hidden="true">⌄</span></summary>
@@ -405,6 +431,17 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
     return u + "&travelmode=walking";
   }
 
+  /* ---------- 店名で調べる ----------
+   * 元データ（認証団体の公表情報）の「WEB」欄は、認証を受けた法人のサイトであって
+   * 店舗のページではないことが多い（建設会社・コンサル会社など）。
+   * さらに実測で 41件中9件がリンク切れだった（2026-07-30）。
+   * そのため公式リンクは出さず、店名＋地名での検索に置き換えている。
+   */
+  function searchUrl(s){
+    var q = (mapName(s) + " " + (s.city || s.pref || "")).trim();
+    return "https://www.google.com/search?q=" + encodeURIComponent(q);
+  }
+
   /* ---------- 現在地 ---------- */
   var btnLocate = $("#btnLocate"), btnClear = $("#btnClearLoc"), locNote = $("#locNote");
   btnLocate.addEventListener("click", function(){
@@ -559,7 +596,9 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
       li.innerHTML =
         '<div class="card-top">'
           + '<span class="rank">' + (i+1) + '</span>'
-          + '<h3>' + esc(s.name) + '</h3>'
+          + '<h3>' + esc(s.name)
+            + (s.name_truncated ? '<span class="cut" title="出典側の表記が途中で切れています">表記が途中</span>' : '')
+          + '</h3>'
           + '<button type="button" class="badge js-badge ' + CERT_CLASS[s.cert_status] + '" '
             + 'title="区分の意味を見る">' + esc(CERT_LABEL[s.cert_status]) + '</button>'
         + '</div>'
@@ -576,7 +615,7 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
           + '<a class="act act-main" href="' + esc(mapSearchUrl(s)) + '" target="_blank" rel="noopener noreferrer">🗺 地図で開く</a>'
           + '<a class="act" href="' + esc(mapDirUrl(s)) + '" target="_blank" rel="noopener noreferrer">🧭 経路</a>'
           + (s.tel ? '<a class="act" href="tel:' + esc(s.tel.replace(/[^0-9+]/g,"")) + '">📞 電話</a>' : '')
-          + (s.web ? '<a class="act" href="' + esc(s.web) + '" target="_blank" rel="noopener noreferrer">🔗 公式</a>' : '')
+          + '<a class="act" href="' + esc(searchUrl(s)) + '" target="_blank" rel="noopener noreferrer">🔎 店名で調べる</a>'
         + '</div>';
 
       frag.appendChild(li);
