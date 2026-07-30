@@ -94,13 +94,23 @@ h1{font-size:1.42rem;margin:.5rem 0 .2rem;letter-spacing:.01em;line-height:1.4}
   margin:18px 0 0; background:var(--card); border:1px solid var(--line);
   border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
 }
+/* 常時見えるのは「最終確認はお店へ」の1行だけ。区分の意味はタップで開く（消してはいない） */
 .legend-head{
   display:flex;align-items:center;gap:9px;padding:13px 16px;
-  border-bottom:1px solid var(--line-2); background:var(--bg-soft);
-  font-weight:800;font-size:.95rem;
+  background:var(--bg-soft);
+  font-weight:800;font-size:.95rem;cursor:pointer;list-style:none;
 }
-.legend-head .dot{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.legend-head::-webkit-details-marker{display:none}
+.legend-head .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none}
+.legend-head .car{margin-left:auto;color:var(--ink-3);font-weight:700;transition:transform .15s}
+.legend[open] .legend-head{border-bottom:1px solid var(--line-2)}
+.legend[open] .legend-head .car{transform:rotate(180deg)}
 .legend-body{padding:6px 16px 14px}
+.warnline{
+  margin:14px 0 0;padding:11px 14px;border-radius:12px;display:flex;gap:9px;align-items:flex-start;
+  background:var(--warn-bg);color:var(--ink-2);font-size:.87rem;
+}
+.warnline b{color:var(--warn)}
 .legend-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line-2);align-items:flex-start}
 .legend-item:last-child{border-bottom:0}
 .legend-item .badge{align-self:flex-start;margin-top:2px;min-width:84px;justify-content:center}
@@ -119,6 +129,10 @@ h1{font-size:1.42rem;margin:.5rem 0 .2rem;letter-spacing:.01em;line-height:1.4}
   font-size:.74rem;font-weight:800;letter-spacing:.02em;
   padding:4px 10px;border-radius:999px;border:1px solid transparent;white-space:nowrap;
 }
+/* カードのバッジは押せる。押すと区分の説明が開く＝意味が必要になった場所から1タップで届く */
+button.badge{font-family:inherit;cursor:pointer}
+button.badge::after{content:"？";font-size:.66rem;opacity:.65;margin-left:1px}
+button.badge:focus-visible{outline:2px solid var(--brand-2);outline-offset:2px}
 .badge-certified{background:var(--ok-bg);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 30%,transparent)}
 .badge-self{background:var(--info-bg);color:var(--info);border-color:color-mix(in srgb,var(--info) 30%,transparent)}
 .badge-friendly{background:var(--warn-bg);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
@@ -201,8 +215,15 @@ footer{margin:34px 0 0;background:var(--bg-soft);border-top:1px solid var(--line
 footer h2{font-size:.92rem;margin:0 0 6px}
 footer p{margin:.4rem 0}
 footer ul{margin:.4rem 0;padding-left:1.2em}
-.disclaimer{background:var(--warn-bg);border-radius:12px;padding:12px 14px;color:var(--ink-2);margin-top:12px}
+.disclaimer{background:var(--warn-bg);border-radius:12px;padding:12px 14px;color:var(--ink-2);margin-top:0}
 .disclaimer b{color:var(--warn)}
+.disclaimer p{margin:0}
+.foot-more{margin-top:12px}
+.foot-more summary{cursor:pointer;font-weight:700;color:var(--ink-2);list-style:none}
+.foot-more summary::-webkit-details-marker{display:none}
+.foot-more summary::before{content:"＋ ";color:var(--ink-3)}
+.foot-more[open] summary::before{content:"− "}
+.foot-more > div{margin-top:8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
@@ -224,9 +245,12 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
 
 <main class="wrap">
 
-  <!-- 認証区分の説明。一覧より先に置く。 -->
-  <section class="legend" aria-labelledby="legendTitle">
-    <div class="legend-head"><span class="dot"></span><span id="legendTitle">表示している「区分」の意味</span></div>
+  <!-- 常時見えるのは警告の1行だけ。区分の意味は畳んであり、カードのバッジからも開ける。 -->
+  <p class="warnline">⚠️<span><b>最終確認は必ずお店にお願いします。</b>
+    原材料・調理器具・仕入れ先は予告なく変わります。このサイトは、あなたが食べられるかどうかを保証しません。</span></p>
+
+  <details class="legend" id="legend">
+    <summary class="legend-head"><span class="dot"></span><span id="legendTitle">「認証済み」「自己申告」「一部対応」の違い</span><span class="car" aria-hidden="true">⌄</span></summary>
     <div class="legend-body">
       <div class="legend-item">
         <span class="badge badge-certified">認証済み</span>
@@ -240,11 +264,8 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
         <span class="badge badge-friendly">一部対応</span>
         <p>ムスリムフレンドリー。豚肉不使用メニューがある、酒類を提供している等、<b>一部のみの対応</b>です。</p>
       </div>
-      <p class="legend-final">⚠️<span><b>最終確認は必ずお店にお願いします。</b>
-        原材料・調理器具・仕入れ先は予告なく変わります。認証の有効期限が切れている場合もあります。
-        このサイトの掲載内容は、あなたが食べられるかどうかを保証するものではありません。</span></p>
     </div>
-  </section>
+  </details>
 
   <!-- 絞り込み -->
   <section class="controls" aria-label="絞り込み">
@@ -278,20 +299,24 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
 
 <footer>
   <div class="wrap">
-    <h2>データについて</h2>
-    <p id="srcNote"></p>
-    <ul>
-      <li>掲載しているのは店名・住所・電話番号・ジャンル・営業時間などの<b>事実情報のみ</b>で、各件に出典リンクを付けています。</li>
-      <li>緯度経度は国土地理院の住所検索APIで住所から求めた<b>おおよその位置</b>です。建物単位で特定できなかった店は「位置はおおよそ」と明記しています。</li>
-      <li>掲載の追加・修正・削除のご依頼はお店・団体からお受けします。→ <a href="register.html">掲載のご依頼（お店の方へ）</a></li>
-    </ul>
     <div class="disclaimer">
-      <p><b>この版について</b>：現在は試作段階で、意見をいただくために限定的に公開しています。
-      掲載件数はまだ少なく、内容の確認も途中です。実際のお店選びの判断にはお使いにならないでください。</p>
-      <p><b>免責</b>：本サイトはハラール性を保証・証明するものではありません。認証の有無・内容は各認証団体および各店舗にご確認ください。
-      掲載情報の誤り・更新遅れによって生じた損害について、運営者は責任を負いかねます。</p>
+      <p><b>試作中です。</b>掲載件数はまだ少なく、内容の確認も途中です。実際のお店選びの判断にはお使いにならないでください。</p>
     </div>
-    <p style="margin-top:12px;color:var(--ink-3)">位置情報はブラウザ内でのみ利用し、サーバーへ送信・保存していません。</p>
+
+    <details class="foot-more">
+      <summary>データと免責について</summary>
+      <div>
+        <p id="srcNote"></p>
+        <ul>
+          <li>掲載しているのは店名・住所・電話番号・ジャンル・営業時間などの<b>事実情報のみ</b>で、各件に出典リンクを付けています。</li>
+          <li>緯度経度は国土地理院の住所検索APIで住所から求めた<b>おおよその位置</b>です。建物単位で特定できなかった店は「位置はおおよそ」と明記しています。</li>
+          <li>掲載の追加・修正・削除のご依頼はお店・団体からお受けします。→ <a href="register.html">掲載のご依頼（お店の方へ）</a></li>
+        </ul>
+        <p><b>免責</b>：本サイトはハラール性を保証・証明するものではありません。認証の有無・内容は各認証団体および各店舗にご確認ください。
+        掲載情報の誤り・更新遅れによって生じた損害について、運営者は責任を負いかねます。</p>
+        <p>位置情報はブラウザ内でのみ利用し、サーバーへ送信・保存していません。</p>
+      </div>
+    </details>
   </div>
 </footer>
 
@@ -535,7 +560,8 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
         '<div class="card-top">'
           + '<span class="rank">' + (i+1) + '</span>'
           + '<h3>' + esc(s.name) + '</h3>'
-          + '<span class="badge ' + CERT_CLASS[s.cert_status] + '">' + esc(CERT_LABEL[s.cert_status]) + '</span>'
+          + '<button type="button" class="badge js-badge ' + CERT_CLASS[s.cert_status] + '" '
+            + 'title="区分の意味を見る">' + esc(CERT_LABEL[s.cert_status]) + '</button>'
         + '</div>'
         + (distHtml ? '<p class="meta">' + distHtml + '</p>' : '')
         + (metaBits.length ? '<p class="meta">' + metaBits.join(" ") + '</p>' : '')
@@ -570,6 +596,15 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
       + (when ? "（取得日 " + when + "）" : "")
       + "。認証団体が公表している一覧をもとにしています。";
   })();
+
+  /* ---------- カードのバッジ → 区分の説明を開く ---------- */
+  document.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest(".js-badge") : null;
+    if (!b) return;
+    var lg = document.getElementById("legend");
+    lg.open = true;
+    lg.scrollIntoView({behavior:"smooth", block:"center"});
+  });
 
   render();
 })();
