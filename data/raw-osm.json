@@ -1,0 +1,1659 @@
+{
+  "fetched_at": "2026-08-03T20:54:04.656Z",
+  "license": "ODbL 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "query": "[out:json][timeout:300];\narea[\"ISO3166-1\"=\"JP\"][admin_level=2]->.jp;\n(\n  nwr[\"diet:halal\"~\"^(yes|only|limited)$\"](area.jp);\n  nwr[\"halal\"~\"^(yes|only|limited)$\"](area.jp);\n  nwr[\"cuisine\"~\"halal\",i](area.jp);\n);\nout center tags;",
+  "count": 84,
+  "elements": [
+    {
+      "type": "node",
+      "id": 1669745920,
+      "lat": 35.6604918,
+      "lon": 139.6985218,
+      "tags": {
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "マモケバブ",
+        "source": "survey",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1742814138,
+      "lat": 35.7337825,
+      "lon": 139.7479374,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "curry",
+        "cuisine:ja": "カリーシュダ六義園",
+        "diet:halal": "yes",
+        "name": "カリーシュダ六義園",
+        "source": "survey"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1852762596,
+      "lat": 34.6820482,
+      "lon": 135.8243326,
+      "tags": {
+        "addr:city": "奈良市下三条町",
+        "addr:neighbourhood": "44-2",
+        "addr:postcode": "630-8236",
+        "addr:province": "奈良県",
+        "amenity": "restaurant",
+        "building:levels": "4",
+        "capacity": "42",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "diet:non-vegetarian": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Manna糧",
+        "phone": "+81-742-26-4000",
+        "source": "gps;local knowledge;survey",
+        "takeaway": "yes",
+        "website": "https://www.manna-food.jp"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1916530505,
+      "lat": 35.7016974,
+      "lon": 139.7704113,
+      "tags": {
+        "amenity": "fast_food",
+        "check_date": "2024-06-07",
+        "cuisine": "kebab",
+        "cuisine:ja": "ケバブ",
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "モーゼスさんのケバブ",
+        "name:en": "Moses's Kebab",
+        "name:ja": "モーゼスさんのケバブ",
+        "name:ja_rm": "Mozesusannnokebabu",
+        "takeaway": "only"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2501405132,
+      "lat": 35.6489862,
+      "lon": 139.6364841,
+      "tags": {
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "スパイスワラ",
+        "name:en": "Spice Wala",
+        "name:ja": "スパイスワラ",
+        "name:ja-Latn": "Supaisu Wara",
+        "opening_hours": "18:00-02:00",
+        "shop": "supermarket",
+        "source": "survey"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2600749646,
+      "lat": 35.608245,
+      "lon": 139.6690228,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:phone": "+81 3-5701-0012",
+        "cuisine": "turkish",
+        "diet:halal": "yes",
+        "level": "2",
+        "name": "サバラン",
+        "name:en": "Sabalan",
+        "name:ja": "サバラン",
+        "website": "http://www.sabalanhills.com"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3116659416,
+      "lat": 35.6627392,
+      "lon": 139.7089536,
+      "tags": {
+        "addr:city": "渋谷区",
+        "addr:floor": "B1F",
+        "addr:postcode": "150-0001",
+        "amenity": "restaurant",
+        "capacity": "60",
+        "contact:phone": "+81 03 340 98480",
+        "contact:website": "https://namaste-in.com/",
+        "cuisine": "curry;indian",
+        "diet:halal": "yes",
+        "diet:vegetarian": "yes",
+        "level": "-1",
+        "name": "ナマステインドアジアンダイニング",
+        "name:en": "Namaste Indian Asian Dining",
+        "opening_hours": "11:00-15:00,17:00-22:00",
+        "payment:american_express": "yes",
+        "payment:mastercard": "yes",
+        "payment:visa": "yes",
+        "smoking": "separated",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3176585520,
+      "lat": 35.5033205,
+      "lon": 138.7697351,
+      "tags": {
+        "addr:block_number": "4035",
+        "addr:city": "富士河口湖町",
+        "addr:county": "南都留郡",
+        "addr:postcode": "401-0301",
+        "addr:province": "山梨県",
+        "addr:quarter": "船津",
+        "amenity": "restaurant",
+        "cuisine": "indian;kebab",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Alladin Indo Restaurant & Kebab House",
+        "opening_hours": "10:30-19:30",
+        "phone": "+81555733331"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3371408382,
+      "lat": 35.6701952,
+      "lon": 139.764492,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "name": "アナム",
+        "name:en": "Anam",
+        "source": "survey"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3445905054,
+      "lat": 35.6650226,
+      "lon": 139.7366116,
+      "tags": {
+        "addr:block_number": "3",
+        "addr:city": "港区",
+        "addr:flats": "コープ野村六本木",
+        "addr:housenumber": "2",
+        "addr:neighbourhood": "三丁目",
+        "addr:province": "東京都",
+        "addr:quarter": "六本木",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "diet:vegetarian": "yes",
+        "disused:amenity": "restaurant",
+        "fax": "03-3586-2645",
+        "fixme": "A mapcomplete user marked this feature to be deleted (shop_closed)",
+        "name": "DownTown B's",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3808440554,
+      "lat": 35.7034851,
+      "lon": 139.7755649,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "level": "0",
+        "lunch": "yes",
+        "name": "Sultan Indian & Pakistan Restaurant",
+        "name:ja": "スルターン",
+        "takeaway": "yes",
+        "website": "http://www.sultan.co.jp/Sultan_HP/index.html"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4244281889,
+      "lat": 35.4965691,
+      "lon": 138.7879726,
+      "tags": {
+        "addr:block_number": "10",
+        "addr:city": "富士吉田市",
+        "addr:housenumber": "15",
+        "addr:neighbourhood": "5",
+        "addr:postcode": "403-0012",
+        "addr:province": "山梨県",
+        "addr:quarter": "旭",
+        "amenity": "restaurant",
+        "cuisine": "okonomiyaki;japanese",
+        "diet:halal": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Shuju",
+        "name:ja": "臭獣",
+        "name:ja-Latn": "Shuujuu",
+        "opening_hours": "Mo-Sa 18:00-23:00",
+        "payment:cards": "yes",
+        "payment:cash": "yes",
+        "phone": "08065093852"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4409459364,
+      "lat": 36.3591482,
+      "lon": 139.3918274,
+      "tags": {
+        "addr:city": "栃木県足利市大前町",
+        "addr:housenumber": "158",
+        "addr:postcode": "326-0845",
+        "diet:halal": "yes",
+        "name": "Ashikaga Halal Food",
+        "shop": "food"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4535079989,
+      "lat": 35.7059997,
+      "lon": 139.775318,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "only",
+        "level": "-1",
+        "lunch": "yes",
+        "menu:physical": "yes",
+        "menu:qr": "yes",
+        "name": "ヴェジハーブサーガ",
+        "name:en": "Vege Herb Saga",
+        "name:ja": "ヴェジハーブサーガ",
+        "opening_hours": "11:15-15:00, 17:15-23:00",
+        "phone": "+81 358184154"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4579292590,
+      "lat": 38.2786569,
+      "lon": 140.8493002,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "name": "Nan Tandoori",
+        "name:ja": "ナン タンドリ",
+        "opening_hours": "We-Mo 11:30-14:30,17:00-21:30",
+        "phone": "+81 22 272 1523"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5006417796,
+      "lat": 35.7026437,
+      "lon": 139.7775849,
+      "tags": {
+        "amenity": "restaurant",
+        "branch": "仲御徒町店",
+        "contact:fax": "+81 3 6885 6584",
+        "contact:phone": "+81 3 6885 6584",
+        "cuisine": "turkish;indian",
+        "diet:halal": "only",
+        "level": "0",
+        "lunch": "11:00-17:00",
+        "name": "エウサ",
+        "name:en": "EUSA",
+        "name:ja": "エウサ",
+        "opening_hours": "11:00-23:00",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5017251233,
+      "lat": 35.7132819,
+      "lon": 139.6680016,
+      "tags": {
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "delivery": "no",
+        "diet:halal": "yes",
+        "drive_through": "no",
+        "level": "0",
+        "name": "ケバブ アップ アルル",
+        "name:en": "Kebab Up Alulu",
+        "name:ja-Hira": "けばぶあっぷあるる",
+        "name:ja-Latn": "Kebabu Appu Aruru",
+        "opening_hours": "11:00-22:00",
+        "outdoor_seating": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5066800554,
+      "lat": 35.7058786,
+      "lon": 139.7768231,
+      "tags": {
+        "contact:phone": "+81 3 3834 3440",
+        "diet:halal": "only",
+        "level": "0",
+        "name": "スパイシーフードネットワーク",
+        "name:en": "Spicy Food Network",
+        "opening_hours": "Mo-Su 11:00-20:00",
+        "shop": "supermarket",
+        "source": "survey"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5603039997,
+      "lat": 35.774664,
+      "lon": 140.388049,
+      "tags": {
+        "addr:city": "成田市",
+        "addr:postcode": "282-0004",
+        "addr:province": "千葉県",
+        "amenity": "restaurant",
+        "diet:halal": "yes",
+        "level": "3",
+        "name": "信州そば処 そじ坊",
+        "name:en": "SOJIBOU",
+        "opening_hours": "Mo-Su 07:00-20:30",
+        "payment:credit_cards": "yes",
+        "website": "https://www.narita-airport.jp/jp/shops/detail/t2mn04_t000a1"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6056089229,
+      "lat": 35.7000062,
+      "lon": 139.7752786,
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "CoCo壱番屋",
+        "brand:en": "CoCo ICHIBANYA",
+        "brand:ja": "CoCo壱番屋",
+        "brand:wikidata": "Q5986105",
+        "cuisine": "curry;japanese",
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "CoCo壱番屋",
+        "name:en": "CoCo ICHIBANYA",
+        "name:ja": "CoCo壱番屋",
+        "opening_hours": "Mo-Su 11:00-22:30",
+        "short_name": "ココイチ",
+        "short_name:en": "CoCoICHI",
+        "short_name:ja": "ココイチ",
+        "takeaway": "yes",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6320781385,
+      "lat": 35.6668611,
+      "lon": 139.6633633,
+      "tags": {
+        "alt_name": "ちゃぶ膳",
+        "alt_name:en": "Chabuzen",
+        "amenity": "restaurant",
+        "contact:phone": "+818066038587",
+        "contact:website": "https://chabuzen.square.site",
+        "cuisine": "ramen",
+        "delivery": "yes",
+        "diet:halal": "yes",
+        "diet:halal:certification:certifier": "Japan Muslim Access",
+        "diet:halal:certified": "yes",
+        "diet:vegan": "only",
+        "food:bibimbap": "yes",
+        "food:gyoza": "yes",
+        "food:indian_curry": "yes",
+        "food:ramen": "yes",
+        "indoor_seating": "yes",
+        "name": "薬膳食堂ちゃぶ膳",
+        "name:en": "Food Therapy Diner Chabuzen",
+        "opening_hours": "Tu-Su 17:00-21:00",
+        "organic": "only",
+        "outdoor_seating": "no",
+        "takeaway": "yes",
+        "website:menu": "https://chabuzen.square.site/s/order"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6585963762,
+      "lat": 36.3791987,
+      "lon": 139.2483194,
+      "tags": {
+        "halal": "yes",
+        "name": "JB Halal Food",
+        "shop": "health_food"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6747341415,
+      "lat": 35.3214539,
+      "lon": 139.5523538,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2024-11-04",
+        "diet:halal": "yes",
+        "level": "1",
+        "name": "舵屋",
+        "payment:PayPay": "yes",
+        "payment:cards": "no",
+        "payment:cash": "yes",
+        "payment:credit_cards": "no",
+        "payment:debit_cards": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6836320090,
+      "lat": 38.2757192,
+      "lon": 140.8504343,
+      "tags": {
+        "diet:halal": "yes",
+        "name": "Majumder Foods (Halal)",
+        "payment:cash": "yes",
+        "phone": "+81 22 275 3018",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7958827469,
+      "lat": 35.1527783,
+      "lon": 136.962792,
+      "tags": {
+        "addr:city": "名古屋市",
+        "addr:province": "愛知県",
+        "addr:quarter": "宮東町",
+        "addr:suburb": "昭和区",
+        "air_conditioning": "yes",
+        "amenity": "restaurant",
+        "branch": "名古屋大学店",
+        "brand": "Mega Kebab",
+        "check_date": "2026-07-07",
+        "cuisine": "asian",
+        "delivery": "yes",
+        "diet:halal": "yes",
+        "internet_access": "no",
+        "level": "1",
+        "name": "Mega Kebab",
+        "outdoor_seating": "yes",
+        "source": "local knowledge",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7985462150,
+      "lat": 35.6399574,
+      "lon": 139.3416292,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8244845978,
+      "lat": 35.7181967,
+      "lon": 139.7885992,
+      "tags": {
+        "amenity": "restaurant",
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "Spice Jaya"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8890194005,
+      "lat": 35.7054212,
+      "lon": 139.7743798,
+      "tags": {
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "エウサ ハラールマート",
+        "name:en": "Eusa Halal Mart",
+        "shop": "supermarket",
+        "source": "survey",
+        "start_date": "2021"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9941867250,
+      "lat": 35.5030181,
+      "lon": 138.6614862,
+      "tags": {
+        "amenity": "restaurant",
+        "diet:halal": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10137262817,
+      "lat": 35.6984717,
+      "lon": 139.770225,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "kebab;turkish",
+        "diet:halal": "yes",
+        "name": "アンテップ　ケバブ",
+        "name:en": "Antep Kebab"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10246324098,
+      "lat": 34.2924549,
+      "lon": 133.7941477,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "name": "ホットマサラ",
+        "opening_hours": "11:00-15:00; 17:00-22:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10269991515,
+      "lat": 35.7141781,
+      "lon": 139.7772405,
+      "tags": {
+        "addr:block_number": "1",
+        "addr:city": "台東区",
+        "addr:floor": "3F",
+        "addr:housename": "ecute上野",
+        "addr:housenumber": "1",
+        "addr:neighbourhood": "上野七丁目",
+        "addr:postcode": "110-0005",
+        "addr:province": "東京都",
+        "amenity": "restaurant",
+        "capacity": "16",
+        "cuisine": "ramen",
+        "description": "Vegan ramen shop T's TanTan (plant-based tantanmen, gyoza, rice bowls/curries, soy meat plates & sets) in Ecute Ueno, JR Ueno Station 3F, inside ticket gates, between tracks 10-11 entrances",
+        "description:en": "Vegan ramen shop T's TanTan (plant-based tantanmen, gyoza, rice bowls/curries, soy meat plates & sets) in Ecute Ueno, JR Ueno Station 3F, inside ticket gates, between tracks 10-11 entrances",
+        "description:es": "Tienda de ramen vegano T's TanTan (tantanmen a base de plantas, gyoza, tazones de arroz/curries, platos y sets de carne de soja) en Ecute Ueno, 3F de JR Ueno Station, dentro de las taquillas, entre entradas a vías 10-11",
+        "description:fr": "Restaurant de ramen vegan T's TanTan (tantanmen à base de plantes, gyoza, bols de riz/curry, assiettes et sets de viande de soja) à Ecute Ueno, 3F de la gare JR Ueno, à l'intérieur des portiques, entre les entrées des voies 10-11",
+        "description:ja": "ヴィーガンラーメン店 T'sたんたん（植物性担々麺、餃子、丼/カレー、大豆ミートプレート＆セット）エキュート上野、JR上野駅3F、改札内、10-11番線入口の間",
+        "description:ko": "비건 라멘 가게 T's TanTan (식물 기반 탄탄면, 교자, 밥볼/커리, 콩고기 플레이트 & 세트) Ecute Ueno, JR Ueno 역 3F, 개찰구 안, 10-11번 승강장 입구 사이",
+        "description:zh": "纯素拉面店 T's TanTan（植物基担担面、煎饺、饭碗/咖喱、豆肉拼盘与套餐），位于 Ecute 上野，JR上野站3F，检票口内，10-11号站台入口之间",
+        "diet:gluten_free": "yes",
+        "diet:halal": "only",
+        "diet:vegan": "only",
+        "diet:vegetarian": "only",
+        "level": "2",
+        "name:en": "T's TanTan Ecute Ueno",
+        "name:ja": "T's たんたん",
+        "note": "Access only past ticket gates; between entrance for tracks 10 & 11",
+        "note:ja": "アクセスは改札を抜けたところのみ。",
+        "opening_hours": "Mo-Fr 10:00-22:00; Sa-Su 10:00-21:00",
+        "phone": "+81-3-5830-7313",
+        "source": "https://www.ecute.jp/ueno/shop/6187;https://www.ecute.jp/floor_guide/floormap_ueno_en.pdf;https://shop.jr-cross.co.jp/eki/spot/detail?code=f15528",
+        "source:start_date": "https://instagram.com/ts_tantan_jp/p/DOxA6zLEioC",
+        "start_date": "2025-10-16",
+        "website": "https://ts-restaurant.jp/tantan",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10300144645,
+      "lat": 36.1112057,
+      "lon": 140.1104427,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "Ayman"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10613213299,
+      "lat": 34.6702977,
+      "lon": 135.5015986,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:facebook": "momososaka",
+        "diet:halal": "yes",
+        "level": "1;2",
+        "name": "Momo's"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10734907205,
+      "lat": 43.0384636,
+      "lon": 141.3553925,
+      "tags": {
+        "amenity": "cafe",
+        "diet:halal": "yes",
+        "diet:pescetarian": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "agt"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10911700295,
+      "lat": 36.1112172,
+      "lon": 140.1014024,
+      "tags": {
+        "amenity": "restaurant",
+        "diet:halal": "yes",
+        "indoor": "yes",
+        "level": "0"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11038411398,
+      "lat": 35.7013844,
+      "lon": 139.7705563,
+      "tags": {
+        "addr:block_number": "10",
+        "addr:city": "千代田区",
+        "addr:housename": "イサミヤ第三ビル",
+        "addr:housenumber": "5",
+        "addr:neighbourhood": "外神田三丁目",
+        "addr:postcode": "101-0021",
+        "addr:province": "東京都",
+        "check_date": "2024-12-11",
+        "cuisine": "turkish;kebab",
+        "diet:halal": "yes",
+        "disused:amenity": "fast_food",
+        "drink:beer": "yes",
+        "drink:cola": "yes",
+        "drink:soft_drink": "yes",
+        "drink:sour": "yes",
+        "level": "0",
+        "name": "デニズ ターキッシュ カフェ&バー",
+        "name:en": "DENIZ TURKISH CAFE & BAR",
+        "phone": "+81 3 3525 8763",
+        "source:start_date": "https://japanese-heart.com/introduce/deniz-turkish-cafe-bar/",
+        "start_date": "2021-11",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11169416112,
+      "lat": 35.7729732,
+      "lon": 140.3893973,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "curry",
+        "diet:halal": "yes",
+        "name": "ラ・トック",
+        "name:en": "LA TOQUE",
+        "name:ja": "ラ・トック",
+        "opening_hours": "07:30-20:30",
+        "website": "https://www.narita-airport.jp/jp/shops/detail/t2mn04_t0004m",
+        "website:menu": "https://livejapan.com/ja/in-tokyo/in-pref-chiba/in-narita/spot-lj0006420/menu/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11276618977,
+      "lat": 35.503067,
+      "lon": 138.7697049,
+      "tags": {
+        "addr:block_number": "4224",
+        "addr:city": "富士河口湖町",
+        "addr:county": "南都留郡",
+        "addr:housenumber": "4",
+        "addr:postcode": "401-0301",
+        "addr:province": "山梨県",
+        "addr:quarter": "船津",
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "level": "2",
+        "name:en": "The Spice Hut",
+        "name:ja": "ザ・スパイス・ハット",
+        "opening_hours": "11:00-21:00",
+        "phone": "+810555257544"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11612811981,
+      "lat": 35.8313608,
+      "lon": 139.3352513,
+      "tags": {
+        "atm": "yes",
+        "branch": "飯能阿須店",
+        "brand": "7-ELEVEN",
+        "brand:en": "7-ELEVEN",
+        "brand:ja": "セブン-イレブン",
+        "brand:wikidata": "Q259340",
+        "brand:wikipedia": "en:7-Eleven",
+        "diet:halal": "yes",
+        "name": "セブン-イレブン",
+        "name:en": "7-Eleven",
+        "name:ja": "セブン-イレブン",
+        "name:ja-Latn": "Sebun Irebun",
+        "name:ko": "세븐일레븐",
+        "official_name:en": "Seven-Eleven",
+        "opening_hours": "Mo-Fr 08:00-18:00; Sa 08:00-16:00",
+        "shop": "convenience"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11904075165,
+      "lat": 34.6689461,
+      "lon": 133.9173049,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "thai",
+        "diet:halal": "yes",
+        "name": "A Che Che"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11980385998,
+      "lat": 36.2673337,
+      "lon": 139.2099187,
+      "tags": {
+        "addr:block_number": "3806",
+        "addr:city": "伊勢崎市",
+        "addr:housenumber": "1",
+        "addr:neighbourhood": "長沼町",
+        "addr:postcode": "372-0855",
+        "addr:province": "群馬県",
+        "diet:halal": "yes",
+        "name": "Al Modina",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11986515942,
+      "lat": 34.6964172,
+      "lon": 135.1888389,
+      "tags": {
+        "amenity": "restaurant",
+        "check_date": "2024-06-17",
+        "cuisine": "ramen",
+        "diet:halal": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Al-Hilal Halal Ramen",
+        "phone": "+81 70-6562-1311"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12123848668,
+      "lat": 34.7100046,
+      "lon": 135.2185721,
+      "tags": {
+        "diet:halal": "yes",
+        "diet:vegetarian": "yes",
+        "level": "0",
+        "name": "AliMart",
+        "opening_hours": "Mo-Tu,Th-Su 11:00-20:00; We off",
+        "shop": "food"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12220744433,
+      "lat": 35.1165191,
+      "lon": 138.9368871,
+      "tags": {
+        "addr:block_number": "1056",
+        "addr:city": "Mishima",
+        "addr:housenumber": "5",
+        "addr:neighbourhood": "Yata",
+        "addr:province": "Shizuoka",
+        "check_date": "2024-10-04",
+        "description": "Delicatessen and bento shop serving meals with fresh ingredients to customers every weekday",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "internet_access": "no",
+        "name": "ハレ",
+        "name:en": "Hare",
+        "opening_hours": "Mo-Fr 11:00-19:00",
+        "payment:PayPay": "yes",
+        "payment:cash": "yes",
+        "payment:credit_cards": "yes",
+        "payment:debit_cards": "yes",
+        "phone": "07016760610",
+        "shop": "deli",
+        "source": "survey",
+        "start_date": "2024-09-01",
+        "website": "https://www.instagram.com/hare_souzai_ten/",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12269426587,
+      "lat": 35.4631965,
+      "lon": 139.6174631,
+      "tags": {
+        "diet:halal": "yes",
+        "name": "アジアンマート",
+        "shop": "general",
+        "source": "survey"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12343736434,
+      "lat": 34.3944344,
+      "lon": 132.4763399,
+      "tags": {
+        "diet:halal": "only",
+        "name": "Halal Food",
+        "shop": "food"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12346698557,
+      "lat": 35.7329229,
+      "lon": 139.7114135,
+      "tags": {
+        "addr:block_number": "43",
+        "addr:city": "豊島区",
+        "addr:housenumber": "3",
+        "addr:level": "2",
+        "addr:neighbourhood": "一丁目",
+        "addr:postcode": "171-0021",
+        "addr:province": "東京都",
+        "addr:quarter": "西池袋",
+        "amenity": "restaurant",
+        "cuisine": "chinese",
+        "diet:halal": "yes",
+        "name": "アリヤ 清真美食 池袋店",
+        "opening_hours": "Mo-Su 11:00-23:00",
+        "phone": "+81 050-5487-0262",
+        "website": "https://gftv700.gorp.jp/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12518570601,
+      "lat": 35.6674705,
+      "lon": 139.762034,
+      "tags": {
+        "addr:block_number": "10",
+        "addr:city": "中央区",
+        "addr:floor": "B1F",
+        "addr:housename": "銀座8丁目10番ビル",
+        "addr:housenumber": "8",
+        "addr:neighbourhood": "銀座八丁目",
+        "addr:province": "東京都",
+        "amenity": "restaurant",
+        "capacity": "50",
+        "contact:email": "deepree.tokyo@gmail.com",
+        "cuisine": "indian",
+        "delivery": "yes",
+        "diet:halal": "yes",
+        "diet:non-vegetarian": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "dog": "yes",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "level": "-1",
+        "name": "アナム　本格インド料理　銀座店",
+        "name:en": "Anam Authentic Indian Cuisine Ginza Branch",
+        "name:ja": "アナム　本格インド料理　銀座店",
+        "opening_hours": "Mo-Su 11:00-03:00",
+        "opening_hours:kitchen": "Mo-Su 11:00-02:00",
+        "owner": "Deep Ree",
+        "payment:au_pay": "yes",
+        "payment:jcb": "yes",
+        "payment:mastercard": "yes",
+        "payment:paypay": "yes",
+        "payment:visa": "yes",
+        "phone": "+81 3-6280-6708",
+        "reservation": "yes",
+        "reservation:website": "https://hotpepper.jp/strJ001177934/yoyaku/hpds",
+        "smoking": "no",
+        "takeaway": "yes",
+        "website": "https://annam-indian-restaurannt.owsr.jp",
+        "website:en": "https://annam-indian-restaurannt.owst.jp/en"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12637205701,
+      "lat": 35.7057385,
+      "lon": 139.7712233,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "japanese",
+        "diet:halal": "yes",
+        "name": "三休"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12778361686,
+      "lat": 34.6518011,
+      "lon": 135.3855197,
+      "tags": {
+        "check_date": "2025-06-10",
+        "cuisine": "noodle",
+        "diet:halal": "yes",
+        "historic:amenity": "restaurant",
+        "name": "UDON"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12811216308,
+      "lat": 35.7222861,
+      "lon": 139.7526341,
+      "tags": {
+        "amenity": "fast_food",
+        "cuisine": "kebab",
+        "diet:halal": "yes",
+        "diet:vegetarian": "yes",
+        "indoor_seating": "yes",
+        "name": "Master Kebab",
+        "opening_hours": "Mo-Fr 11:00-14:00+,18:00-24:00+, Sa,Su 11:00-24:00+",
+        "outdoor_seating": "no",
+        "smoking": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12841020351,
+      "lat": 35.815327,
+      "lon": 140.0591961,
+      "tags": {
+        "addr:block_number": "228",
+        "addr:city": "白井市",
+        "addr:housenumber": "20",
+        "addr:neighbourhood": "河原子",
+        "addr:postcode": "270-1403",
+        "addr:province": "千葉県",
+        "amenity": "restaurant",
+        "cuisine": "パキスタン料理",
+        "diet:halal": "yes",
+        "name": "ムムターズ",
+        "name:en": "mumtaz",
+        "opening_hours": "Mo-Su 11:00-23:00",
+        "phone": "+81-47-404-1230"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12913941566,
+      "lat": 34.6534275,
+      "lon": 135.3767126,
+      "tags": {
+        "check_date": "2025-06-14",
+        "cuisine": "asian;japanese;bangladeshi;indian;turkish;italian;curry;biryani;kebab;beef_bowl;pasta",
+        "diet:halal": "yes",
+        "drink:masala_chai": "yes",
+        "historic:amenity": "food_court",
+        "indoor_seating": "yes",
+        "internet_access": "wlan",
+        "level": "0",
+        "name": "エスニックフュージョンレストラン",
+        "name:en": "ETHNIC FUSION RESTAURANT",
+        "name:ja": "エスニックフュージョンレストラン",
+        "outdoor_seating": "yes",
+        "reservation": "no",
+        "smoking": "no",
+        "takeaway": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12913941567,
+      "lat": 34.6538947,
+      "lon": 135.3763399,
+      "tags": {
+        "check_date": "2025-06-14",
+        "cuisine": "asian;japanese;bangladeshi;indian;turkish;italian;curry;biryani;kebab;beef_bowl;pasta",
+        "diet:halal": "yes",
+        "drink:masala_chai": "yes",
+        "historic:amenity": "food_court",
+        "indoor_seating": "yes",
+        "internet_access": "yes",
+        "internet_access:fee": "no",
+        "level": "0",
+        "name:en": "Grand Food Court",
+        "name:ja": "グランドフードコート",
+        "outdoor_seating": "yes",
+        "smoking": "no",
+        "takeaway": "yes",
+        "toilets": "no",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12955774214,
+      "lat": 34.337436,
+      "lon": 134.0475441,
+      "tags": {
+        "alt_name": "DOUNIYA",
+        "amenity": "restaurant",
+        "contact:instagram": "DOUNYASPICES",
+        "cuisine": "nepalese",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "level": "0",
+        "name": "ドゥーニャ",
+        "opening_hours": "11:00-22:00",
+        "payment:cash": "yes",
+        "payment:mastercard": "yes",
+        "payment:paypay": "yes",
+        "payment:visa": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12998590401,
+      "lat": 35.1902507,
+      "lon": 139.0259583,
+      "tags": {
+        "addr:city": "Hakone",
+        "addr:housenumber": "81-11",
+        "addr:postcode": "250-0521",
+        "addr:street": "国道1号",
+        "alcohol": "yes",
+        "amenity": "restaurant",
+        "contact:instagram": "pammsdine",
+        "cuisine": "mediterranean;middle_eastern;burger;lebanese",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "level": "1",
+        "name": "Pam's Dine & Grill",
+        "opening_hours": "Mo-Su 11:00-15:00, 16:30-20:30",
+        "phone": "+81460833955",
+        "self_service": "no",
+        "website": "http://instagram.com/pammsdine"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13004497519,
+      "lat": 34.3943171,
+      "lon": 132.4763521,
+      "tags": {
+        "diet:halal": "only",
+        "name": "STAR MART",
+        "opening_hours": "09:00-21:00",
+        "shop": "food"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13059064030,
+      "lat": 34.6666826,
+      "lon": 133.9229638,
+      "tags": {
+        "amenity": "restaurant",
+        "contact:instagram": "https://www.instagram.com/milenga.okayama",
+        "cuisine": "indian",
+        "diet:halal": "yes",
+        "diet:vegan": "no",
+        "diet:vegetarian": "yes",
+        "level": "0",
+        "name": "ミレンガ",
+        "name:en": "milenga",
+        "opening_hours": "Mo-Sa 11:30-21:00; Su,PH 11:30-18:00",
+        "phone": "+81-86-206-2289"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13347178675,
+      "lat": 35.7300126,
+      "lon": 139.7276189,
+      "tags": {
+        "diet:halal": "yes",
+        "name": "ラマニア ハラルスーパーマーケット",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13356790953,
+      "lat": 35.4926841,
+      "lon": 138.8038364,
+      "tags": {
+        "addr:block_number": "6",
+        "addr:city": "富士吉田市",
+        "addr:housenumber": "28",
+        "addr:neighbourhood": "3",
+        "addr:postcode": "403-0004",
+        "addr:province": "山梨県",
+        "addr:quarter": "下吉田",
+        "amenity": "restaurant",
+        "cuisine": "indian;curry",
+        "diet:halal": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name:en": "Kariamudhu",
+        "name:ja": "カリアムドゥ",
+        "opening_hours": "Th-Fr 11:30-15:00; Sa-Su 11:30-16:00",
+        "phone": "+819044293061",
+        "website": "https://photonks2.web.fc2.com/kurau/kariamudhu.html"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13359160601,
+      "lat": 35.6611952,
+      "lon": 139.6971382,
+      "tags": {
+        "amenity": "restaurant",
+        "branch": "Shibuya",
+        "contact:facebook": "https://facebook.com/p/Andhra-Dining-Shibuya-100067132418649",
+        "contact:instagram": "andhra_dining",
+        "contact:tablelog": "https://tabelog.com/en/tokyo/A1303/A130301/13258029",
+        "cuisine": "indian;andhra_pradesh;andhra;south_indian",
+        "description": "South Indian restaurant specializing in authentic Andhra Pradesh cuisine, featuring dosas, vadas, spicy curries, biryanis, and thalis in Shibuya, Tokyo.",
+        "description:en": "South Indian restaurant specializing in authentic Andhra Pradesh cuisine, featuring dosas, vadas, spicy curries, biryanis, and thalis in Shibuya, Tokyo.",
+        "description:es": "Restaurante del sur de la India especializado en auténtica cocina de Andhra Pradesh, que ofrece dosas, vadas, curris picantes, biryanis y thalis en Shibuya, Tokio.",
+        "description:hi": "टोक्यो के शिबुया में असली आंध्र प्रदेश व्यंजनों के लिए प्रसिद्ध साउथ इंडियन रेस्टोरेंट, जिसमें डोसा, वड़ा, मसालेदार करी, बिरयानी और थाली शामिल हैं।",
+        "description:ja": "東京渋谷で本格的なアンドラプラデーシュ料理を専門とする南インド料理店。ドーサ、ワダ、スパイシーなカレー、ビリヤニ、ターリを提供。",
+        "description:ko": "도쿄 시부야에 위치한 정통 안드라프라데시 요리를 전문으로 하는 남인도 레스토랑. 도사, 바다, 매운 카레, 비리야니, 탈리를 제공합니다.",
+        "description:te": "టోక్యో శిబుయాలో ప్రధానాంగా అంధ్ర ప్రదేశ్ వంటకాలతో దోస, వడలు, మసాలా కర్రీలు, బిర్యానీ, తాళి లును అందించే దక్షిణ భారతీయ రెస్టారెంట్.",
+        "description:zh": "位于东京涩谷，专营正宗安得拉邦南印度菜，特色菜品包括多萨饼、炸豆饼、辛辣咖喱、香饭和套餐。",
+        "diet:halal": "yes",
+        "diet:non-vegetarian": "yes",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "level": "5",
+        "name": "Andhra Dining SHIBUYA",
+        "opening_hours": "Mo-Fr 11:15-14:30,17:00-22:00; Sa-Su 11:30-14:30,17:00-21:00",
+        "phone": "+81-3-6416-5520",
+        "website": "https://andhradining.com"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13371059102,
+      "lat": 35.6273031,
+      "lon": 139.7724415,
+      "tags": {
+        "amenity": "restaurant",
+        "capacity": "170",
+        "contact:tablelog": "https://tabelog.com/en/tokyo/A1313/A131306/13024179",
+        "contact:tripadvisor": "https://www.tripadvisor.com/Restaurant_Review-g14134368-d1658116-Reviews-The_Oven_American_Buffet-Daiba_Minato_Tokyo_Tokyo_Prefecture_Kanto.html",
+        "cuisine": "american;buffet",
+        "diet:halal": "yes",
+        "halal:certification": "no",
+        "level": "5",
+        "name": "The Oven アクアシティお台場店 - アメリカン",
+        "name:en": "The Oven - American Buffet",
+        "name:ja": "The Oven アクアシティお台場店 - アメリカンハウス",
+        "opening_hours": "Mo-Fr 11:00-14:30, 17:00-21:00; Sa-Su 11:00-16:00, 17:00-21:30",
+        "reservation": "yes",
+        "self_service": "only",
+        "website": "https://americanhouse.co.jp/shop/the-oven-aqua-city-odaiba/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13371066001,
+      "lat": 35.6275115,
+      "lon": 139.7728544,
+      "tags": {
+        "amenity": "restaurant",
+        "bar": "yes",
+        "contact:tablelog": "https://s.tabelog.com/en/tokyo/A1313/A131306/13211110/",
+        "contact:tripadvisor": "https://www.tripadvisor.com/Restaurant_Review-g14134368-d12885505-Reviews-Indian_Restaurant_Mumbai_Aqua_City_Odaiba-Daiba_Minato_Tokyo_Tokyo_Prefecture_.html",
+        "cuisine": "indian",
+        "diet:halal": "only",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "level": "5",
+        "name": "Indian Restaurant Mumbai + Tandoori Grill",
+        "opening_hours": "Mo-Su 11:00-23:00",
+        "website": "https://mumbai-odaiba.com",
+        "website:menu": "https://mumbai-odaiba.com/#menu"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13384631226,
+      "lat": 34.6597646,
+      "lon": 135.4982394,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "noodle",
+        "diet:halal": "only",
+        "name": "周記蘭州牛肉面"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13651521747,
+      "lat": 35.7112106,
+      "lon": 139.7926248,
+      "tags": {
+        "addr:block_number": "16",
+        "addr:city": "台東区",
+        "addr:housenumber": "9 MGビル2F",
+        "addr:neighbourhood": "雷門一丁目",
+        "addr:postcode": "111-0034",
+        "addr:province": "東京都",
+        "amenity": "restaurant",
+        "contact:instagram": "kawashina_asakusa_wagyu",
+        "cuisine": "すき焼き;和牛;しゃぶしゃぶ;和食;イスラム",
+        "diet:halal": "yes",
+        "name": "Sukiyaki KAWASHINA",
+        "opening_hours": "11:00-15:00,17:00-20:00",
+        "phone": "03-5246-3983",
+        "website": "https://www.asakusa-kawashina.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13706119036,
+      "lat": 35.7019988,
+      "lon": 139.6997342,
+      "tags": {
+        "diet:halal": "only",
+        "name": "Green Nasco",
+        "phone": "080-4086-8631",
+        "shop": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13706119037,
+      "lat": 35.7021199,
+      "lon": 139.6995392,
+      "tags": {
+        "addr:block_number": "9",
+        "addr:city": "新宿区",
+        "addr:housenumber": "2",
+        "addr:neighbourhood": "2丁目",
+        "addr:postcode": "169-0073",
+        "addr:province": "東京都",
+        "addr:quarter": "百人町",
+        "diet:halal": "only",
+        "name": "Shinjuku Halal Food",
+        "operator": "Gold Lavender",
+        "phone": "03-6869-6171",
+        "shop": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13706119038,
+      "lat": 35.7017733,
+      "lon": 139.6975345,
+      "tags": {
+        "addr:block_number": "21",
+        "addr:city": "新宿区",
+        "addr:housenumber": "1",
+        "addr:neighbourhood": "2丁目",
+        "addr:postcode": "169-0073",
+        "addr:province": "東京都",
+        "addr:quarter": "百人町",
+        "diet:halal": "only",
+        "name": "MB Super Shop",
+        "opening_hours": "Mo-Su 09:00-24:00",
+        "phone": "03-4288-8381",
+        "phone:mobile": "080-7270-6860",
+        "shop": "yes",
+        "website": "https://mbsupershop.jp/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13784115350,
+      "lat": 36.1838888,
+      "lon": 139.9670891,
+      "tags": {
+        "diet:halal": "yes",
+        "name": "RAMADAN HALAL FOOD",
+        "shop": "grocery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13788932548,
+      "lat": 35.7388165,
+      "lon": 139.7656749,
+      "tags": {
+        "cuisine": "asian",
+        "diet:halal": "yes",
+        "name": "Adi Ari",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13971641176,
+      "lat": 35.7892372,
+      "lon": 139.4719412,
+      "tags": {
+        "air_conditioning": "yes",
+        "amenity": "restaurant",
+        "cuisine": "japanese",
+        "diet:gluten_free": "no",
+        "diet:halal": "yes",
+        "diet:kosher": "yes",
+        "diet:vegan": "only",
+        "diet:vegetarian": "only",
+        "indoor_seating": "yes",
+        "name": "玄米菜食Dan",
+        "opening_hours": "Mo-Su 11:30-18:00",
+        "outdoor_seating": "no",
+        "phone": "090-3695-0339",
+        "smoking": "no",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14027061476,
+      "lat": 35.1681601,
+      "lon": 136.8785973,
+      "tags": {
+        "contact:phone": "+81 90-4440-7536",
+        "diet:halal": "yes",
+        "level": "0",
+        "name": "Nur halal food",
+        "opening_hours": "09:00-21:00",
+        "shop": "food",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14051693310,
+      "lat": 35.977003,
+      "lon": 139.8344813,
+      "tags": {
+        "amenity": "restaurant",
+        "cuisine": "pizza;burger",
+        "diet:halal": "yes",
+        "name": "Hana pizza Joint & Dessert",
+        "name:en": "Hana pizza Joint & Dessert",
+        "name:ja": "ハナ ピザ ジョイント & デザート"
+      }
+    },
+    {
+      "type": "way",
+      "id": 88982688,
+      "center": {
+        "lat": 35.7013767,
+        "lon": 139.7709018
+      },
+      "tags": {
+        "addr:block_number": "10",
+        "addr:neighbourhood": "外神田三丁目",
+        "amenity": "fast_food",
+        "building": "yes",
+        "building:levels": "1",
+        "check_date": "2024-05-16",
+        "cuisine": "kebab",
+        "diet:halal": "yes",
+        "name": "スターケバブ アキバテラス",
+        "name:en": "Star Kebab",
+        "source": "Bing, 2007-04",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 120397837,
+      "center": {
+        "lat": 35.8522899,
+        "lon": 139.3258202
+      },
+      "tags": {
+        "brand": "FamilyMart",
+        "brand:en": "FamilyMart",
+        "brand:ja": "ファミリーマート",
+        "brand:wikidata": "Q11247682",
+        "brand:wikipedia": "ja:ファミリーマート",
+        "building": "retail",
+        "building:colour": "white",
+        "building:levels": "1",
+        "building:material": "plaster",
+        "diet:gluten_free": "yes",
+        "diet:halal": "yes",
+        "diet:kosher": "yes",
+        "name": "ファミリーマート",
+        "name:en": "FamilyMart",
+        "name:ja": "ファミリーマート",
+        "opening_hours": "24/7",
+        "roof:colour": "brown",
+        "roof:levels": "0",
+        "roof:shape": "quadruple_saltbox",
+        "shop": "convenience",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 542869968,
+      "center": {
+        "lat": 35.851434,
+        "lon": 139.3200769
+      },
+      "tags": {
+        "brand": "FamilyMart",
+        "brand:en": "FamilyMart",
+        "brand:ja": "ファミリーマート",
+        "brand:wikidata": "Q11247682",
+        "building": "yes",
+        "diet:gluten_free": "yes",
+        "diet:halal": "yes",
+        "diet:kosher": "yes",
+        "name": "ファミリーマート",
+        "name:en": "FamilyMart",
+        "name:ja": "ファミリーマート",
+        "opening_hours": "24/7",
+        "shop": "convenience",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 761402710,
+      "center": {
+        "lat": 35.8657962,
+        "lon": 139.7947123
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "building": "yes",
+        "diet:halal": "yes",
+        "name": "Rabeya Restaurant & Sweets",
+        "name:ja": "ラベヤ　レストラン＆スイーツ",
+        "phone": "+819450380",
+        "reservation": "yes",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1137770469,
+      "center": {
+        "lat": 35.2463757,
+        "lon": 139.0503645
+      },
+      "tags": {
+        "brand": "LAWSON",
+        "brand:en": "LAWSON",
+        "brand:ja": "ローソン",
+        "brand:wikidata": "Q1557223",
+        "building": "retail",
+        "diet:halal": "yes",
+        "name": "ローソン",
+        "name:en": "Lawson",
+        "name:ja": "ローソン",
+        "opening_hours": "24/7",
+        "shop": "convenience"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1203862923,
+      "center": {
+        "lat": 35.8444638,
+        "lon": 139.3266785
+      },
+      "tags": {
+        "brand": "LAWSON",
+        "brand:en": "LAWSON",
+        "brand:ja": "ローソン",
+        "brand:wikidata": "Q1557223",
+        "building": "yes",
+        "diet:gluten_free": "yes",
+        "diet:halal": "yes",
+        "diet:kosher": "yes",
+        "name": "ローソン",
+        "name:en": "Lawson",
+        "name:ja": "ローソン",
+        "opening_hours": "24/7",
+        "shop": "convenience",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1203862926,
+      "center": {
+        "lat": 35.8452129,
+        "lon": 139.3410693
+      },
+      "tags": {
+        "brand": "FamilyMart",
+        "brand:en": "FamilyMart",
+        "brand:ja": "ファミリーマート",
+        "brand:wikidata": "Q11247682",
+        "building": "yes",
+        "diet:halal": "yes",
+        "name": "ファミリーマート",
+        "name:en": "FamilyMart",
+        "name:ja": "ファミリーマート",
+        "opening_hours": "24/7",
+        "shop": "convenience",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1236892537,
+      "center": {
+        "lat": 35.8318936,
+        "lon": 139.3392899
+      },
+      "tags": {
+        "addr:block_number": "815",
+        "addr:city": "飯能市",
+        "addr:housenumber": "7",
+        "addr:postcode": "357-0046",
+        "addr:province": "埼玉県",
+        "addr:quarter": "阿須",
+        "brand": "ベルク",
+        "brand:en": "Belc",
+        "brand:ja": "ベルク",
+        "brand:wikidata": "Q11337090",
+        "building": "retail",
+        "building:colour": "#ffe0a0",
+        "building:levels": "1",
+        "building:material": "plaster",
+        "diet:gluten_free": "yes",
+        "diet:halal": "yes",
+        "diet:kosher": "yes",
+        "name": "ベルク",
+        "name:en": "Belc",
+        "name:ja": "ベルク",
+        "opening_hours": "Mo-Su,PH 09:00-24:00",
+        "roof:shape": "flat",
+        "shop": "supermarket",
+        "smoking": "no",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1247985837,
+      "center": {
+        "lat": 35.8393797,
+        "lon": 139.3473699
+      },
+      "tags": {
+        "brand": "LAWSON",
+        "brand:en": "LAWSON",
+        "brand:ja": "ローソン",
+        "brand:wikidata": "Q1557223",
+        "building": "yes",
+        "diet:halal": "yes",
+        "name": "ローソン",
+        "name:en": "Lawson",
+        "name:ja": "ローソン",
+        "name:ja_rm": "Rōson",
+        "name:ko": "로손",
+        "opening_hours": "24/7",
+        "shop": "convenience",
+        "source": "microsoft/BuildingFootprints",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1255171361,
+      "center": {
+        "lat": 35.834857,
+        "lon": 139.3346222
+      },
+      "tags": {
+        "access": "customers",
+        "brand": "7-ELEVEN",
+        "brand:en": "7-ELEVEN",
+        "brand:ja": "セブン-イレブン",
+        "brand:wikidata": "Q259340",
+        "building": "yes",
+        "building:colour": "lightgrey",
+        "covered": "no",
+        "diet:gluten_free": "yes",
+        "diet:halal": "yes",
+        "diet:kosher": "yes",
+        "fee": "no",
+        "name": "セブン-イレブン",
+        "name:en": "7-Eleven",
+        "name:ja": "セブン-イレブン",
+        "official_name:en": "Seven-Eleven",
+        "opening_hours": "24/7",
+        "park_ride": "no",
+        "parking": "surface",
+        "shop": "convenience",
+        "surface": "asphalt",
+        "wheelchair": "yes"
+      }
+    }
+  ]
+}

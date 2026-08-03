@@ -140,6 +140,8 @@ button.badge:focus-visible{outline:2px solid var(--brand-2);outline-offset:2px}
 .badge-certified{background:var(--ok-bg);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 30%,transparent)}
 .badge-self{background:var(--info-bg);color:var(--info);border-color:color-mix(in srgb,var(--info) 30%,transparent)}
 .badge-friendly{background:var(--warn-bg);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
+/* 地図データは裏取りがいちばん弱い。色でも他の3区分と同じ顔にしない */
+.badge-osm{background:var(--bg-soft);color:var(--ink-3);border-color:var(--line-2)}
 
 /* ---------- controls ---------- */
 .controls{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
@@ -178,6 +180,7 @@ button.badge:focus-visible{outline:2px solid var(--brand-2);outline-offset:2px}
 .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ok)}
 .card.is-self::before{background:var(--info)}
 .card.is-friendly::before{background:var(--warn)}
+.card.is-osm::before{background:var(--line-2)}
 .card-top{display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap}
 .card h3{margin:0;font-size:1.03rem;line-height:1.45;flex:1;min-width:0;word-break:break-word}
 .rank{
@@ -257,26 +260,43 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
     <summary class="legend-head"><span class="dot" style="background:var(--info)"></span><span>この一覧のデータについて（正直にお伝えします）</span><span class="car" aria-hidden="true">⌄</span></summary>
     <div class="legend-body">
       <p style="margin:8px 0 0;font-size:.86rem;color:var(--ink-2)">
-        掲載は<b>認証団体が公表している認証実績</b>をもとにしています。認証は<b>店舗ではなく事業者に対して</b>出るため、
-        次の弱点があります。ご承知おきください。</p>
-      <ul style="margin:8px 0 0;padding-left:1.2em;font-size:.86rem;color:var(--ink-2)">
+        出どころは<b>2つ</b>あります。<b>確かさが違うので、区分を分けて表示しています。</b>
+        それぞれに弱点があるので、先にお伝えします。</p>
+
+      <p style="margin:12px 0 0;font-size:.86rem;color:var(--ink-2)">
+        <b>①「認証済み」＝認証団体が公表している認証実績</b>。認証は<b>店舗ではなく事業者に対して</b>出るため、
+        店舗の情報としては次の弱点があります。</p>
+      <ul style="margin:6px 0 0;padding-left:1.2em;font-size:.86rem;color:var(--ink-2)">
         <li><b>店名が途中で切れている店があります</b>（出典側が約50文字で切っているため）。
           「表記が途中」の印が付いた店は、<b>正式名称を出典でご確認ください</b>。
           こちらで推測して補うと誤った名前になるため、あえて補っていません。</li>
         <li><b>店名に事業者名が混ざっている場合があります</b>（「株式会社◯◯」など）。同じ理由です。</li>
-        <li><b>公式サイトへのリンクは出していません。</b>
-          出典に載っているURLは事業者のサイト（建設会社・コンサル会社など）であることが多く、
-          お店の情報ではないためです。実際に確認したところ<b>4件に1件はリンク切れ</b>でした。
-          代わりに「店名で調べる」を用意しています。</li>
         <li>位置は住所から求めた<b>おおよその座標</b>です。建物まで特定できなかった店は「位置はおおよそ」と表示しています。</li>
       </ul>
+
+      <p style="margin:12px 0 0;font-size:.86rem;color:var(--ink-2)">
+        <b>②「地図データ」＝OpenStreetMap に書き込まれている情報</b>。
+        認証団体の一覧だけでは<b>6都府県しか埋まらなかった</b>ため、お店を見つける手がかりとして足しました。</p>
+      <ul style="margin:6px 0 0;padding-left:1.2em;font-size:.86rem;color:var(--ink-2)">
+        <li><b>書き込んだのはお店でも認証団体でもありません。</b>審査もお店への確認も経ていません。
+          <b>「認証済み」と同じ確かさのものとして扱わないでください。</b></li>
+        <li><b>いつ書かれたものか分かりません。</b>閉店している、対応が変わっている可能性があります。</li>
+        <li><b>コンビニやスーパーも含まれます。</b>「ハラールの商品を置いている」という意味で書かれたものです。
+          店全体がハラールという意味ではありません。</li>
+        <li>「全てハラール」なのか「ハラールのものもある」なのかは、カードごとに書き分けています。</li>
+      </ul>
+
+      <p style="margin:12px 0 0;font-size:.86rem;color:var(--ink-2)">
+        <b>公式サイトへのリンクは、どちらの出どころでも出していません。</b>
+        認証実績に載っているURLは事業者のサイト（建設会社・コンサル会社など）であることが多く、
+        実際に確認したところ<b>4件に1件はリンク切れ</b>でした。代わりに「店名で調べる」を用意しています。</p>
       <p style="margin:10px 0 0;font-size:.86rem;color:var(--ink-2)">
         <b>店の名前・場所・営業状況は、出典と「店名で調べる」で必ず確かめてください。</b></p>
     </div>
   </details>
 
   <details class="legend" id="legend">
-    <summary class="legend-head"><span class="dot"></span><span id="legendTitle">「認証済み」「自己申告」「一部対応」の違い</span><span class="car" aria-hidden="true">⌄</span></summary>
+    <summary class="legend-head"><span class="dot"></span><span id="legendTitle">「認証済み」「自己申告」「一部対応」「地図データ」の違い</span><span class="car" aria-hidden="true">⌄</span></summary>
     <div class="legend-body">
       <div class="legend-item">
         <span class="badge badge-certified">認証済み</span>
@@ -290,6 +310,13 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
         <span class="badge badge-friendly">一部対応</span>
         <p>ムスリムフレンドリー。豚肉不使用メニューがある、酒類を提供している等、<b>一部のみの対応</b>です。</p>
       </div>
+      <div class="legend-item">
+        <span class="badge badge-osm">地図データ</span>
+        <p>地図サービス OpenStreetMap に「ハラール対応」と<b>書き込まれている</b>お店です。
+          書き込んだのはお店でも認証団体でもなく、<b>地図を編集した誰か</b>です。
+          <b>審査も、お店への確認も経ていません。</b>いつ書かれたものかも分かりません。
+          この区分は<b>お店を見つけるための手がかり</b>として出しています。対応の内容は必ずお店にご確認ください。</p>
+      </div>
     </div>
   </details>
 
@@ -300,6 +327,7 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
       <button class="chip" data-cert="certified" aria-pressed="true">認証済み</button>
       <button class="chip" data-cert="self" aria-pressed="true">自己申告</button>
       <button class="chip" data-cert="friendly" aria-pressed="true">一部対応</button>
+      <button class="chip" data-cert="osm" aria-pressed="true">地図データ</button>
     </div>
     <div class="ctl-row" id="genreRow">
       <span class="ctl-label">ジャンル</span>
@@ -354,12 +382,12 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
   var DATA = (window.HALAL_DATA && window.HALAL_DATA.stores) ? window.HALAL_DATA : {stores:[],sources:[],generated_at:''};
   var STORES = DATA.stores || [];
 
-  var CERT_LABEL = {certified:"認証済み", self:"自己申告", friendly:"一部対応"};
-  var CERT_CLASS = {certified:"badge-certified", self:"badge-self", friendly:"badge-friendly"};
-  var CARD_CLASS = {certified:"", self:"is-self", friendly:"is-friendly"};
+  var CERT_LABEL = {certified:"認証済み", self:"自己申告", friendly:"一部対応", osm:"地図データ"};
+  var CERT_CLASS = {certified:"badge-certified", self:"badge-self", friendly:"badge-friendly", osm:"badge-osm"};
+  var CARD_CLASS = {certified:"", self:"is-self", friendly:"is-friendly", osm:"is-osm"};
 
   var state = {
-    cert:{certified:true, self:true, friendly:true},
+    cert:{certified:true, self:true, friendly:true, osm:true},
     genre:"",           // "" = すべて
     maxKm:0,            // 0 = 指定なし
     q:"",
@@ -606,8 +634,11 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
         + (metaBits.length ? '<p class="meta">' + metaBits.join(" ") + '</p>' : '')
         + '<p class="addr">' + esc(s.address) + (s.tel ? ' ・ ' + esc(s.tel) : '') + '</p>'
         + (!precise ? '<p class="note-approx">位置はおおよそです（住所から建物を特定できませんでした）。地図は住所で開きます。</p>' : '')
+        // 「全部ハラール」なのか「ハラールのものもある」なのかは意味が違うので、区分とは別に必ず出す
+        + (s.osm_halal_text ? '<p class="note-approx">' + esc(s.osm_halal_text) + '</p>' : '')
         + '<p class="src">'
-            + (s.cert_status === "certified" ? esc(s.cert_org) + 'の公表情報' : '登録情報')
+            + (s.cert_status === "certified" ? esc(s.cert_org) + 'の公表情報'
+               : s.cert_status === "osm" ? 'OpenStreetMap の地図データ' : '登録情報')
             + (s.source_url ? ' ・ <a href="' + esc(s.source_url) + '" target="_blank" rel="noopener noreferrer">出典</a>' : '')
             + (s.name_truncated ? ' ・ 正式名称は出典をご確認ください' : '')
           + '</p>'
@@ -630,10 +661,20 @@ footer ul{margin:.4rem 0;padding-left:1.2em}
     }).join("、");
     var d = DATA.generated_at ? new Date(DATA.generated_at) : null;
     var when = d ? (d.getFullYear() + "年" + (d.getMonth()+1) + "月" + d.getDate() + "日") : "";
+    var by = DATA.count_by_status || {};
+    var breakdown = [
+      by.certified ? "認証済み " + by.certified + "件" : "",
+      by.self ? "自己申告 " + by.self + "件" : "",
+      by.friendly ? "一部対応 " + by.friendly + "件" : "",
+      by.osm ? "地図データ " + by.osm + "件" : ""
+    ].filter(Boolean).join("・");
     $("#srcNote").innerHTML =
-      "現在の掲載は <b>" + (DATA.count||STORES.length) + "件</b>。出典：" + (srcs || "―")
+      "現在の掲載は <b>" + (DATA.count||STORES.length) + "件</b>"
+      + (breakdown ? "（" + breakdown + "）" : "")
+      + "。出典：" + (srcs || "―")
       + (when ? "（取得日 " + when + "）" : "")
-      + "。認証団体が公表している一覧をもとにしています。";
+      + "。<b>出どころによって確かさが違います。</b>区分をご確認ください。"
+      + " 地図データの部分は © OpenStreetMap contributors（ODbL 1.0）です。";
   })();
 
   /* ---------- カードのバッジ → 区分の説明を開く ---------- */
